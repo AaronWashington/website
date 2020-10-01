@@ -1,59 +1,57 @@
 ---
 title: Hello Minikube
-content_template: templates/tutorial
+content_type: tutorial
 weight: 5
 menu:
   main:
     title: "Get Started"
     weight: 10
     post: >
-      <p>Ready to get your hands dirty? Build a simple Kubernetes cluster that runs "Hello World" for Node.js.</p>
-card: 
+      <p>Ready to get your hands dirty? Build a simple Kubernetes cluster that runs a sample app.</p>
+card:
   name: tutorials
   weight: 10
 ---
 
-{{% capture overview %}}
+<!-- overview -->
 
-This tutorial shows you how to run a simple Hello World Node.js app
+This tutorial shows you how to run a sample app
 on Kubernetes using [Minikube](/docs/setup/learning-environment/minikube) and Katacoda.
-Katacoda provides a free, in-browser Kubernetes environment. 
+Katacoda provides a free, in-browser Kubernetes environment.
 
 {{< note >}}
 You can also follow this tutorial if you've installed [Minikube locally](/docs/tasks/tools/install-minikube/).
 {{< /note >}}
 
-{{% /capture %}}
 
-{{% capture objectives %}}
 
-* Deploy a hello world application to Minikube.
+## {{% heading "objectives" %}}
+
+
+* Deploy a sample application to Minikube.
 * Run the app.
 * View application logs.
 
-{{% /capture %}}
 
-{{% capture prerequisites %}}
 
-This tutorial provides a container image built from the following files:
+## {{% heading "prerequisites" %}}
 
-{{< codenew language="js" file="minikube/server.js" >}}
 
-{{< codenew language="conf" file="minikube/Dockerfile" >}}
+This tutorial provides a container image that uses NGINX to echo back all the requests.
 
-For more information on the `docker build` command, read the [Docker documentation](https://docs.docker.com/engine/reference/commandline/build/).
 
-{{% /capture %}}
 
-{{% capture lessoncontent %}}
+<!-- lessoncontent -->
 
 ## Create a Minikube cluster
 
-1. Click **Launch Terminal** 
+1. Click **Launch Terminal**
 
     {{< kat-button >}}
 
-    {{< note >}}If you installed Minikube locally, run `minikube start`.{{< /note >}}
+{{< note >}}
+    If you installed Minikube locally, run `minikube start`.
+{{< /note >}}
 
 2. Open the Kubernetes dashboard in a browser:
 
@@ -63,11 +61,11 @@ For more information on the `docker build` command, read the [Docker documentati
 
 3. Katacoda environment only: At the top of the terminal pane, click the plus sign, and then click **Select port to view on Host 1**.
 
-4. Katacoda environment only: Type `30000`, and then click **Display Port**. 
+4. Katacoda environment only: Type `30000`, and then click **Display Port**.
 
 ## Create a Deployment
 
-A Kubernetes [*Pod*](/docs/concepts/workloads/pods/pod/) is a group of one or more Containers,
+A Kubernetes [*Pod*](/docs/concepts/workloads/pods/) is a group of one or more Containers,
 tied together for the purposes of administration and networking. The Pod in this
 tutorial has only one Container. A Kubernetes
 [*Deployment*](/docs/concepts/workloads/controllers/deployment/) checks on the health of your
@@ -75,10 +73,10 @@ Pod and restarts the Pod's Container if it terminates. Deployments are the
 recommended way to manage the creation and scaling of Pods.
 
 1. Use the `kubectl create` command to create a Deployment that manages a Pod. The
-Pod runs a Container based on the provided Docker image. 
+Pod runs a Container based on the provided Docker image.
 
     ```shell
-    kubectl create deployment hello-node --image=gcr.io/hello-minikube-zero-install/hello-node
+    kubectl create deployment hello-node --image=k8s.gcr.io/echoserver:1.4
     ```
 
 2. View the Deployment:
@@ -118,8 +116,10 @@ Pod runs a Container based on the provided Docker image.
     ```shell
     kubectl config view
     ```
-  
-    {{< note >}}For more information about `kubectl`commands, see the [kubectl overview](/docs/user-guide/kubectl-overview/).{{< /note >}}
+
+{{< note >}}
+For more information about `kubectl` commands, see the [kubectl overview](/docs/reference/kubectl/overview/).
+{{< /note >}}
 
 ## Create a Service
 
@@ -133,7 +133,7 @@ Kubernetes [*Service*](/docs/concepts/services-networking/service/).
     ```shell
     kubectl expose deployment hello-node --type=LoadBalancer --port=8080
     ```
-    
+
     The `--type=LoadBalancer` flag indicates that you want to expose your Service
     outside of the cluster.
 
@@ -166,7 +166,7 @@ Kubernetes [*Service*](/docs/concepts/services-networking/service/).
 
 5. Katacoda environment only: Note the 5 digit port number displayed opposite to `8080` in services output. This port number is randomly generated and it can be different for you. Type your number in the port number text box, then click Display Port. Using the example from earlier, you would type `30369`.
 
-    This opens up a browser window that serves your app and shows the "Hello World" message.
+    This opens up a browser window that serves your app and shows the app's response.
 
 ## Enable addons
 
@@ -199,13 +199,13 @@ Minikube has a set of built-in {{< glossary_tooltip text="addons" term_id="addon
     storage-provisioner: enabled
     storage-provisioner-gluster: disabled
     ```
-   
+
 2. Enable an addon, for example, `metrics-server`:
 
     ```shell
     minikube addons enable metrics-server
     ```
-  
+
     The output is similar to:
 
     ```
@@ -246,7 +246,7 @@ Minikube has a set of built-in {{< glossary_tooltip text="addons" term_id="addon
     ```shell
     minikube addons disable metrics-server
     ```
-  
+
     The output is similar to:
 
     ```
@@ -274,12 +274,13 @@ Optionally, delete the Minikube VM:
 minikube delete
 ```
 
-{{% /capture %}}
 
-{{% capture whatsnext %}}
+
+## {{% heading "whatsnext" %}}
+
 
 * Learn more about [Deployment objects](/docs/concepts/workloads/controllers/deployment/).
-* Learn more about [Deploying applications](/docs/user-guide/deploying-applications/).
+* Learn more about [Deploying applications](/docs/tasks/run-application/run-stateless-application-deployment/).
 * Learn more about [Service objects](/docs/concepts/services-networking/service/).
 
-{{% /capture %}}
+

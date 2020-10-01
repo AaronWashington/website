@@ -1,81 +1,93 @@
 ---
-content_template: templates/concept
-title: Weź udział w tworzeniu dokumentacji Kubernetesa
+content_type: concept
+title: Współtwórz dokumentację Kubernetesa
 linktitle: Weź udział
 main_menu: true
 weight: 80
+card:
+  name: contribute
+  weight: 10
+  title: Weź udział
 ---
 
-{{% capture overview %}}
+<!-- overview -->
 
-Będzie nam bardzo miło, jeśli zechcesz wziąć udział w tworzeniu dokumentacji
-lub strony www Kubernetesa! Nieważne, czy dopiero poznajesz projekt, czy jesteś
-z nami już od dawna, czy uważasz się za programistę, użytkownika, czy po prostu
-nie możesz patrzeć na literówki.
+Tym serwisem www opiekuje się [Kubernetes SIG Docs](/docs/contribute/#get-involved-with-sig-docs).
 
-Więcej informacji na temat zawartości dokumentacji Kubernetesa i jej stylu,
-znajdziesz w
- [Opisie stylu dokumentacji](/docs/contribute/style/).
+Współtwórcy dokumentacji Kubernetesa:
 
-{{% capture body %}}
+- Ulepszają istniejącą zawartość
+- Tworzą nowe treści
+- Tłumaczą dokumentację
+- Zarządzają i publikują dokumentację w ramach cyklu wydawniczego Kubernetesa
 
-## Rodzaje uczestnictwa w procesie tworzenia dokumentacji
+Zapraszamy do współpracy wszystkich - zarówno nowicjuszy, jak i doświadczonych!
 
-- _Członek_ (_member_) organizacji Kubernetes, który [podpisał CLA](/docs/contribute/start#sign-the-cla)
-  i poświęcił swój czas oraz wysiłek na rzecz projektu. Dokument
-  [Członkostwo w organizacji](https://github.com/kubernetes/community/blob/master/community-membership.md)
-  zawiera szczegóły z tym związane.
-- _Recenzent_ (_reviewer_) SIG Docs to członek organizacji Kubernetes, który zgłosił
-  swoją chęć weryfikacji propozycji zmian w dokumentacji (PR) i został dodany
-  do odpowiedniej grupy GitHub i pliku 'OWNERS' w repozytorium GitHub przez
-  osobę zatwierdzającą SIG Docs.
-- _Osoba zatwierdzająca_ (_approver_) SIG Docs to członek organizacji o uznanej reputacji,
-  który wykazał się długotrwałym zaangażowaniem w prace projektu.
-  Osoba zatwierdzająca może włączać propozycje zmian do repozytoriów i publikować
-  treści w imieniu organizacji Kubernetes.
-  Osoby zatwierdzające mogą również reprezentować SIG Docs na szerszym forum
-  społeczności Kubernetes.
-  Niektóre wymagania związane z tą rolą, jak na przykład koordynacja kolejnego wydania,
-  wymagają poświęcenia znacznej ilości czasu.
+<!-- body -->
 
-## Sposoby współpracy przy tworzeniu dokumentacji
+## Jak zacząć?
 
-Poniższa lista podzielona jest na rzeczy, które może robić każdy, te, które może
-robić członek organizacji Kubernetes oraz na takie, które wymagają wyższych uprawnień
-i znajomości procesów SIG Docs. W miarę postępującej współpracy, będziesz mógł lepiej
-zrozumieć niektóre narzędzia czy decyzje, które zostały wcześniej podjęte
-na poziomie organizacyjnym.
+Każdy może otworzyć zgłoszenie dotyczące dokumentacji lub zaproponować zmianę poprzez
+*pull request* (PR) do
+[repozytorium GitHub `kubernetes/website`](https://github.com/kubernetes/website).
+Aby móc sprawnie funkcjonować w społeczności Kubernetes,
+wymagana jest pewna biegłość w korzystaniu z
+[git-a](https://git-scm.com/) i
+[GitHub-a](https://lab.github.com/).
 
-Ta lista nie wyczerpuje wszystkich możliwości udziału, ale powinna być pomocna
-na początku.
+Aby zaangażować się w prace nad dokumentacją należy:
 
-- [Każdy](/docs/contribute/start/)
-  - Otwieranie wszelkiego rodzaju zgłoszeń, względem których mogą zostać podjęte jakieś działania
-- [Członek](/docs/contribute/start/)
-  - Ulepszanie istniejącej dokumentacji
-  - Zgłaszanie pomysłów na ulepszenia poprzez komunikator [Slack](http://slack.k8s.io/) lub [listę dystrybucyjną SIG docs](https://groups.google.com/forum/#!forum/kubernetes-sig-docs)
-  - Zwiększanie dostępności dokumentacji
-  - Zgłaszanie niewiążących uwag do propozycji zmian (PR)
-  - Pisanie bloga lub studium przypadku
-- [Recenzent](/docs/contribute/intermediate/)
-  - Opisywanie nowych funkcjonalności
-  - Przydzielanie kategorii i klasyfikowanie zgłoszeń
-  - Recenzowanie propozycji zmian
-  - Tworzenie schematów, grafik, osadzonych prezentacji (_screencasts_) i filmów
-  - Tłumaczenie
-  - Współtworzenie zawartości innych repozytoriów jako przedstawiciel zespołu dokumentacji
-  - Opracowywanie osadzonych w oprogramowaniu komunikatów dla użytkownika
-  - Ulepszanie komentarzy w oprogramowaniu, Godoc
-- [Osoba zatwierdzająca](/docs/contribute/advanced/)
-  - Publikowanie dostarczonych treści poprzez zatwierdzanie propozycji zmian i włączanie ich do repozytorium
-  - Udział w pracach zespołu przygotowującego nowe wydanie Kubernetesa jako przedstawiciel zespołu dokumentacji
-  - Proponowanie ulepszeń wytycznych dotyczących stylu
-  - Proponowanie ulepszeń testowania dokumentacji
-  - Proponowanie ulepszeń strony Kubernetes lub innych narzędzi
+1. Podpisać [Contributor License Agreement](https://github.com/kubernetes/community/blob/master/CLA.md) CNCF.
+1. Zapoznać się z [repozytorium dokumentacji](https://github.com/kubernetes/website)
+   i z [generatorem statycznej strony](https://gohugo.io) www.
+1. Zrozumieć podstawowe procesy [otwierania *pull request*](/docs/contribute/new-content/new-content/) oraz
+   [recenzowania zmian](/docs/contribute/review/reviewing-prs/).
 
-## Inne metody współpracy
+Do realizacji niektórych zadań potrzeba wyższego poziomu zaufania i odpowiednich uprawnień w organizacji Kubernetes.
+Zajrzyj do [Participating in SIG Docs](/docs/contribute/participate/) po więcej szczegółów dotyczących
+ról i uprawnień.
 
-- Aby włączyć się w prace społeczności Kubernetes poprzez fora internetowe, typu Twitter czy Stack Overflow, lub dowiedzieć się więcej na temat organizowanych lokalnie spotkań i wydarzeń związanym z projektem, zajrzyj na stronę [społeczności Kubernetes](/community/).
-- Aby włączyć się w prace związane z nowymi funkcjonalnościami, przeczytaj na początek [ściągawkę dla współautorów](https://github.com/kubernetes/community/tree/master/contributors/guide/contributor-cheatsheet).
+## Pierwsze kroki
 
-{{% /capture %}}
+- Przeczytaj [Contribution overview](/docs/contribute/new-content/overview/),
+  aby dowiedzieć się o różnych sposobach współpracy.
+- Zajrzyj do [Contribute to kubernetes/website](https://github.com/kubernetes/website/contribute),
+  aby znaleźć dobre zgłoszenie na początek.
+- [Otwórz *pull request* przy pomocy GitHub-a](/docs/contribute/new-content/new-content/#changes-using-github)
+  dotyczący zmiany istniejącej dokumentacji i dowiedz się, jak otwierać zgłoszenia przy GitHub-ie.
+- [Zrecenzuj *pull requests*](/docs/contribute/review/reviewing-prs/)
+  innego członka społeczności Kubernetes pod kątem dokładności i stylu.
+- Zapoznaj się z poradnikami Kubernetesa dotyczącymi [zawartości](/docs/contribute/style/content-guide/)
+  i [stylu](/docs/contribute/style/style-guide/), aby twoje uwagi były zgodne z tymi wytycznymi.
+- Przeczytaj o [różnych typach zawartości na stronie](/docs/contribute/style/page-content-types/)
+  i [skrótach Hugo](/docs/contribute/style/hugo-shortcodes/).
+
+## Co dalej?
+
+- Naucz się, jak [pracować z lokalną kopią](/docs/contribute/new-content/new-content/#fork-the-repo)
+  repozytorium.
+- Udokumentuj [nowe funkcjonalności](/docs/contribute/new-content/new-features/).
+- Włącz się w prace [SIG Docs](/docs/contribute/participating/)
+  i zostań [członkiem organizacji lub recenzentem](/docs/contribute/participating/#roles-and-responsibilities).
+- Pomagaj przy [tłumaczeniu](/docs/contribute/localization/).
+
+## Włącz się w prace SIG Docs
+
+[SIG Docs](/docs/contribute/participating/) to grupa, która publikuje
+i utrzymuje dokumentację Kubernetesa i jej stronę www. Zaangażowanie się w prace SIG Docs
+to doskonała okazja dla współtwórców Kubernetesa (rozwijających nowe funkcjonalności
+lub działających w innych obszarach), aby wywierać wpływ na cały projekt Kubernetes.
+
+Aby włączyć się w komunikację w ramach SIG Docs, możesz:
+
+- [Dołączyć do kanału `#sig-docs` na komunikatorze Slack dla Kubernetesa](https://slack.k8s.io/). Nie zapomnij
+  się przedstawić!
+- [Zapisać się na listę `kubernetes-sig-docs`](https://groups.google.com/forum/#!forum/kubernetes-sig-docs),
+  na której prowadzone są dyskusje o szerszym zasięgu i zapisywane oficjalne decyzje.
+- Dołączyć do [cotygodniowego spotkania wideo SIG Docs](https://github.com/kubernetes/community/tree/master/sig-docs). Spotkania są zawsze zapowiadane na `#sig-docs` i dodawane do [kalendarza spotkań społeczności Kubernetes](https://calendar.google.com/calendar/embed?src=cgnt364vd8s86hr2phapfjc6uk%40group.calendar.google.com&ctz=America/Los_Angeles). Będziesz potrzebował komunikatora [Zoom](https://zoom.us/download) lub telefonu, aby się wdzwonić.
+
+## Inne sposoby współpracy
+
+- Odwiedź [stronę społeczności Kubernetes](/community/). Korzystaj z Twittera i Stack Overflow, dowiedz się o spotkaniach lokalnych grup Kubernetes, różnych wydarzeniach i nie tylko.
+- Przeczytaj [ściągawkę dla współtwórców](https://github.com/kubernetes/community/tree/master/contributors/guide/contributor-cheatsheet), aby zaangażować się w dalszy rozwój Kubernetesa.
+- Przygotuj [wpis na blogu lub *case study*](/docs/contribute/new-content/blogs-case-studies/).

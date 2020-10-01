@@ -22,14 +22,17 @@ Więcej informacji na temat współpracy przy tworzeniu dokumentacji znajdziesz 
 * [Lokalizacja dokumentacji Kubernetes](https://kubernetes.io/docs/contribute/localization/)
 
 ## Różne wersje językowe `README.md`
-|  |  |
-|---|---|
-|[README po francusku](README-fr.md)|[README po koreańsku](README-ko.md)|
-|[README po niemiecku](README-de.md)|[README po portugalsku](README-pt.md)|
-|[README w hindi](README-hi.md)|[README po hiszpańsku](README-es.md)|
-|[README po indonezyjsku](README-id.md)|[README po chińsku](README-zh.md)|
-|[README po japońsku](README-ja.md)|[README po polsku](README-pl.md)|
-|||
+
+|                                        |                                        |
+|----------------------------------------|----------------------------------------|
+| [README po angielsku](README.md)       | [README po francusku](README-fr.md)    |
+| [README po koreańsku](README-ko.md)    | [README po niemiecku](README-de.md)    |
+| [README po portugalsku](README-pt.md)  | [README w hindi](README-hi.md)        |
+| [README po hiszpańsku](README-es.md)   | [README po indonezyjsku](README-id.md) |
+| [README po chińsku](README-zh.md)      | [README po japońsku](README-ja.md)     |
+| [README po wietnamsku](README-vi.md)   | [README po rosyjsku](README-ru.md)     |
+| [README po włosku](README-it.md)       | [README po ukraińsku](README-uk.md)    |
+|                                        |                                        |
 
 ## Jak uruchomić lokalną kopię strony przy pomocy Dockera?
 
@@ -41,18 +44,18 @@ Zalecaną metodą uruchomienia serwisu internetowego Kubernetesa lokalnie jest u
 choco install make
 ```
 
-> Jeśli wolisz uruchomić serwis lokalnie bez Dockera, przeczytaj [jak uruchomić serwis lokalnie przy pomocy Hugo](#jak-uruchomić-serwis-lokalnie-przy-pomocy-hugo) poniżej.
+> Jeśli wolisz uruchomić serwis lokalnie bez Dockera, przeczytaj [jak uruchomić serwis lokalnie przy pomocy Hugo](#jak-uruchomić-lokalną-kopię-strony-przy-pomocy-hugo) poniżej.
 
 Jeśli [zainstalowałeś i uruchomiłeś](https://www.docker.com/get-started) już Dockera, zbuduj obraz `kubernetes-hugo` lokalnie:
 
 ```bash
-make docker-image
+make container-image
 ```
 
 Po zbudowaniu obrazu, możesz uruchomić serwis lokalnie:
 
 ```bash
-make docker-serve
+make container-serve
 ```
 
 Aby obejrzeć zawartość serwisu otwórz w przeglądarce adres http://localhost:1313. Po każdej zmianie plików źródłowych, Hugo automatycznie aktualizuje stronę i odświeża jej widok w przeglądarce.

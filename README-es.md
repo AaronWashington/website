@@ -18,7 +18,7 @@ Para obtener más información sobre cómo contribuir a la documentación de Kub
 
 * [Empezando a contribuir](https://kubernetes.io/docs/contribute/start/)
 * [Visualizando sus cambios en su entorno local](http://kubernetes.io/docs/contribute/intermediate#view-your-changes-locally)
-* [Utilizando las plantillas de las páginas](http://kubernetes.io/docs/contribute/style/page-templates/)
+* [Utilizando las plantillas de las páginas](http://kubernetes.io/docs/contribute/style/page-content-types/)
 * [Guía de estilo de la documentación](http://kubernetes.io/docs/contribute/style/style-guide/)
 * [Traduciendo la documentación de Kubernetes](https://kubernetes.io/docs/contribute/localization/)
 
@@ -28,18 +28,18 @@ El método recomendado para levantar una copia local del sitio web kubernetes.io
 
 > Para Windows, algunas otras herramientas como Make son necesarias. Puede instalarlas utilizando el gestor [Chocolatey](https://chocolatey.org). `choco install make` o siguiendo las instrucciones de [Make for Windows](http://gnuwin32.sourceforge.net/packages/make.htm).
 
-> Si prefiere levantar el sitio web sin utilizar **Docker**, puede seguir las instrucciones disponibles en la sección [Levantando kubernetes.io en local con Hugo](#levantando-kubernetes.io-en-local-con-hugo).
+> Si prefiere levantar el sitio web sin utilizar **Docker**, puede seguir las instrucciones disponibles en la sección [Levantando kubernetes.io en local con Hugo](#levantando-kubernetesio-en-local-con-hugo).
 
 Una vez tenga Docker [configurado en su máquina](https://www.docker.com/get-started), puede construir la imagen de Docker `kubernetes-hugo` localmente ejecutando el siguiente comando en la raíz del repositorio:
 
 ```bash
-make docker-image
+make container-image
 ```
 
 Una vez tenga la imagen construida, puede levantar el sitio web ejecutando:
 
 ```bash
-make docker-serve
+make container-serve
 ```
 
 Abra su navegador y visite http://localhost:1313 para acceder a su copia local del sitio. A medida que vaya haciendo cambios en el código fuente, Hugo irá actualizando la página y forzará la actualización en el navegador.

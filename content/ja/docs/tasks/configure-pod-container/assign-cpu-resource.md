@@ -1,17 +1,18 @@
 ---
 title: コンテナおよびPodへのCPUリソースの割り当て
-content_template: templates/task
+content_type: task
 weight: 20
 ---
 
-{{% capture overview %}}
+<!-- overview -->
 
 このページでは、CPUの *request* と *limit* をコンテナに割り当てる方法について示します。コンテナは設定された制限を超えてCPUを使用することはできません。システムにCPUの空き時間がある場合、コンテナには要求されたCPUを割り当てられます。
 
-{{% /capture %}}
 
 
-{{% capture prerequisites %}}
+
+## {{% heading "prerequisites" %}}
+
 
 {{< include "task-tutorial-prereqs.md" >}} {{< version-check >}}
 
@@ -38,10 +39,10 @@ NAME
 v1beta1.metrics.k8s.io
 ```
 
-{{% /capture %}}
 
 
-{{% capture steps %}}
+
+<!-- steps -->
 
 ## namespaceの作成
 
@@ -195,7 +196,7 @@ kubectl delete pod cpu-demo-2 --namespace=cpu-example
 
 クラスターで動作するコンテナにCPU要求と制限を設定することで、クラスターのノードで利用可能なCPUリソースを効率的に使用することができます。PodのCPU要求を低く保つことで、Podがスケジュールされやすくなります。CPU要求よりも大きい制限を与えることで、次の2つを実現できます:
 
-* Podは利用可能なCPUリソースを、突発的な活動（バースト）に使用することができます。
+* Podは利用可能なCPUリソースを、突発的な活動(バースト)に使用することができます。
 * バースト中のPodのCPUリソース量は、適切な量に制限されます。
 
 
@@ -207,14 +208,15 @@ namespaceを削除してください:
 kubectl delete namespace cpu-example
 ```
 
-{{% /capture %}}
 
-{{% capture whatsnext %}}
+
+## {{% heading "whatsnext" %}}
+
 
 
 ### アプリケーション開発者向け
 
-* [コンテナとPodにメモリーリソースを割り当てる](/docs/tasks/configure-pod-container/assign-memory-resource/)
+* [コンテナおよびPodへのメモリーリソースの割り当て](/ja/docs/tasks/configure-pod-container/assign-memory-resource/)
 
 * [PodのQuality of Serviceを設定する](/docs/tasks/configure-pod-container/quality-service-pod/)
 
@@ -234,4 +236,4 @@ kubectl delete namespace cpu-example
 
 * [APIオブジェクトのクォータを設定する](/docs/tasks/administer-cluster/quota-api-object/)
 
-{{% /capture %}}
+

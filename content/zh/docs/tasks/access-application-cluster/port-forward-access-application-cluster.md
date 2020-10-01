@@ -1,18 +1,18 @@
 ---
 title: 使用端口转发来访问集群中的应用
-content_template: templates/task
+content_type: task
 weight: 40
 ---
 
 <!--
 ---
 title: Use Port Forwarding to Access Applications in a Cluster
-content_template: templates/task
+content_type: task
 weight: 40
 ---
 -->
 
-{{% capture overview %}}
+<!-- overview -->
 
 <!--
 This page shows how to use `kubectl port-forward` to connect to a Redis
@@ -20,10 +20,11 @@ server running in a Kubernetes cluster. This type of connection can be useful
 for database debugging.
 -->
 本文展示如何使用 `kubectl port-forward` 连接到在 Kubernetes 集群中运行的 Redis 服务。这种类型的连接对数据库调试很有用。
-{{% /capture %}}
 
 
-{{% capture prerequisites %}}
+
+## {{% heading "prerequisites" %}}
+
 
 * {{< include "task-tutorial-prereqs.md" >}} {{< version-check >}}
 
@@ -32,10 +33,10 @@ for database debugging.
 -->
 * 安装 [redis-cli](http://redis.io/topics/rediscli)。
 
-{{% /capture %}}
 
 
-{{% capture steps %}}
+
+<!-- steps -->
 
 <!--
 ## Creating Redis deployment and service
@@ -210,10 +211,10 @@ for database debugging.
 -->
     成功的 ping 请求应该返回 PONG。
 
-{{% /capture %}}
 
 
-{{% capture discussion %}}
+
+<!-- discussion -->
 
 <!--
 ## Discussion
@@ -226,25 +227,26 @@ local workstation to debug the database that is running in the pod.
 
 与本地 7000 端口建立的连接将转发到运行 Redis 服务器的 pod 的 6379 端口。通过此连接，您可以使用本地工作站来调试在 pod 中运行的数据库。
 
-{{< warning >}}
 <!--
 Due to known limitations, port forward today only works for TCP protocol.
 The support to UDP protocol is being tracked in
 [issue 47862](https://github.com/kubernetes/kubernetes/issues/47862).
 -->
-**警告：** 由于已知的限制，目前的端口转发仅适用于 TCP 协议。
+{{< warning >}}
+由于已知的限制，目前的端口转发仅适用于 TCP 协议。
 在 [issue 47862](https://github.com/kubernetes/kubernetes/issues/47862) 中正在跟踪对 UDP 协议的支持。
 {{< /warning >}}
 
-{{% /capture %}}
 
 
-{{% capture whatsnext %}}
+
+## {{% heading "whatsnext" %}}
+
 <!--
 Learn more about [kubectl port-forward](/docs/reference/generated/kubectl/kubectl-commands/#port-forward).
 -->
 学习更多关于 [kubectl port-forward](/docs/reference/generated/kubectl/kubectl-commands/#port-forward)。
-{{% /capture %}}
+
 
 
 

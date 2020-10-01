@@ -3,19 +3,20 @@ reviewers:
 - bowei
 - freehan
 title: Enabling EndpointSlices
-content_template: templates/task
+content_type: task
 ---
 
-{{% capture overview %}}
+<!-- overview -->
 This page provides an overview of enabling EndpointSlices in Kubernetes.
-{{% /capture %}}
 
 
-{{% capture prerequisites %}}
+
+## {{% heading "prerequisites" %}}
+
   {{< include "task-tutorial-prereqs.md" >}} {{< version-check >}}
-{{% /capture %}}
 
-{{% capture steps %}}
+
+<!-- steps -->
 
 ## Introduction
 
@@ -35,32 +36,42 @@ components still rely on Endpoints. For now, enabling EndpointSlices should be
 seen as an addition to Endpoints in a cluster, not a replacement for them.
 {{< /note >}}
 
-EndpointSlices are considered a beta feature, but only the API is enabled by
-default. Both the EndpointSlice controller and the usage of EndpointSlices by
-kube-proxy are not enabled by default.
-
-The EndpointSlice controller creates and manages EndpointSlices in a cluster.
-You can enable it with the `EndpointSlice` [feature
-gate](/docs/reference/command-line-tools-reference/feature-gates/) on the {{<
-glossary_tooltip text="kube-apiserver" term_id="kube-apiserver" >}} and {{<
-glossary_tooltip text="kube-controller-manager"
-term_id="kube-controller-manager" >}} (`--feature-gates=EndpointSlice=true`).
-
-For better scalability, you can also enable this feature gate on {{<
-glossary_tooltip text="kube-proxy" term_id="kube-proxy" >}} so EndpointSlices
-will be used as the data source instead of Endpoints.
+EndpointSlice functionality in Kubernetes is made up of several different
+components, most are enabled by default:
+* _The EndpointSlice API_: EndpointSlices are part of the
+  `discovery.k8s.io/v1beta1` API. This is beta and enabled by default since
+  Kubernetes 1.17. All components listed below are dependent on this API being
+  enabled.
+* _The EndpointSlice Controller_: This {{< glossary_tooltip text="controller"
+  term_id="controller" >}} maintains EndpointSlices for Services and the Pods
+  they reference. This is controlled by the `EndpointSlice` feature gate. It has
+  been enabled by default since Kubernetes 1.18.
+* _The EndpointSliceMirroring Controller_: This {{< glossary_tooltip
+  text="controller" term_id="controller" >}} mirrors custom Endpoints to
+  EndpointSlices. This is controlled by the `EndpointSlice` feature gate. It has
+  been enabled by default since Kubernetes 1.19.
+* _Kube-Proxy_: When {{< glossary_tooltip text="kube-proxy" term_id="kube-proxy">}}
+  is configured to use EndpointSlices, it can support higher numbers of Service
+  endpoints. This is controlled by the `EndpointSliceProxying` feature gate on
+  Linux and `WindowsEndpointSliceProxying` on Windows. It has been enabled by
+  default on Linux since Kubernetes 1.19. It is not enabled by default for
+  Windows nodes. To configure kube-proxy to use EndpointSlices on Windows, you
+  can enable the `WindowsEndpointSliceProxying` [feature
+  gate](/docs/reference/command-line-tools-reference/feature-gates/) on
+  kube-proxy.
 
 ## Using EndpointSlices
 
 With EndpointSlices fully enabled in your cluster, you should see corresponding
 EndpointSlice resources for each Endpoints resource. In addition to supporting
-existing Endpoints functionality, EndpointSlices should include new bits of
-information such as topology. They will allow for greater scalability and
-extensibility of network endpoints in your cluster.
+existing Endpoints functionality, EndpointSlices include new bits of information
+such as topology. They will allow for greater scalability and extensibility of
+network endpoints in your cluster.
 
-{{% capture whatsnext %}}
+## {{% heading "whatsnext" %}}
+
 
 * Read about [EndpointSlices](/docs/concepts/services-networking/endpoint-slices/)
 * Read [Connecting Applications with Services](/docs/concepts/services-networking/connect-applications-service/)
 
-{{% /capture %}}
+

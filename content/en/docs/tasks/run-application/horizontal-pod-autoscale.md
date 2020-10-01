@@ -3,20 +3,19 @@ reviewers:
 - fgrzadkowski
 - jszczepkowski
 - directxman12
-- josephburnett
 title: Horizontal Pod Autoscaler
 feature:
   title: Horizontal scaling
   description: >
     Scale your application up and down with a simple command, with a UI, or automatically based on CPU usage.
 
-content_template: templates/concept
+content_type: concept
 weight: 90
 ---
 
-{{% capture overview %}}
+<!-- overview -->
 
-The Horizontal Pod Autoscaler automatically scales the number of pods
+The Horizontal Pod Autoscaler automatically scales the number of Pods
 in a replication controller, deployment, replica set or stateful set based on observed CPU utilization (or, with
 [custom metrics](https://git.k8s.io/community/contributors/design-proposals/instrumentation/custom-metrics-api.md)
 support, on some other application-provided metrics). Note that Horizontal
@@ -27,10 +26,10 @@ The resource determines the behavior of the controller.
 The controller periodically adjusts the number of replicas in a replication controller or deployment
 to match the observed average CPU utilization to the target specified by user.
 
-{{% /capture %}}
 
 
-{{% capture body %}}
+
+<!-- body -->
 
 ## How does the Horizontal Pod Autoscaler work?
 
@@ -46,16 +45,16 @@ obtains the metrics from either the resource metrics API (for per-pod resource m
 or the custom metrics API (for all other metrics).
 
 * For per-pod resource metrics (like CPU), the controller fetches the metrics
-  from the resource metrics API for each pod targeted by the HorizontalPodAutoscaler.
+  from the resource metrics API for each Pod targeted by the HorizontalPodAutoscaler.
   Then, if a target utilization value is set, the controller calculates the utilization
   value as a percentage of the equivalent resource request on the containers in
-  each pod.  If a target raw value is set, the raw metric values are used directly.
+  each Pod.  If a target raw value is set, the raw metric values are used directly.
   The controller then takes the mean of the utilization or the raw value (depending on the type
-  of target specified) across all targeted pods, and produces a ratio used to scale
+  of target specified) across all targeted Pods, and produces a ratio used to scale
   the number of desired replicas.
 
-  Please note that if some of the pod's containers do not have the relevant resource request set,
-  CPU utilization for the pod will not be defined and the autoscaler will
+  Please note that if some of the Pod's containers do not have the relevant resource request set,
+  CPU utilization for the Pod will not be defined and the autoscaler will
   not take any action for that metric. See the [algorithm
   details](#algorithm-details) section below for more information about
   how the autoscaling algorithm works.
@@ -66,7 +65,7 @@ or the custom metrics API (for all other metrics).
 * For object metrics and external metrics, a single metric is fetched, which describes
   the object in question. This metric is compared to the target
   value, to produce a ratio as above. In the `autoscaling/v2beta2` API
-  version, this value can optionally be divided by the number of pods before the
+  version, this value can optionally be divided by the number of Pods before the
   comparison is made.
 
 The HorizontalPodAutoscaler normally fetches metrics from a series of aggregated APIs (`metrics.k8s.io`,
@@ -76,7 +75,7 @@ metrics-server, which needs to be launched separately. See
 for instructions. The HorizontalPodAutoscaler can also fetch metrics directly from Heapster.
 
 {{< note >}}
-{{< feature-state state="deprecated" for_k8s_version="1.11" >}}
+{{< feature-state state="deprecated" for_k8s_version="v1.11" >}}
 Fetching metrics from Heapster is deprecated as of Kubernetes 1.11.
 {{< /note >}}
 
@@ -163,15 +162,11 @@ can be fetched, scaling is skipped. This means that the HPA is still capable
 of scaling up if one or more metrics give a `desiredReplicas` greater than
 the current value.
 
-Finally, just before HPA scales the target, the scale recommendation is
-recorded.  The controller considers all recommendations within a configurable
-window choosing the highest recommendation from within that window. This value
-can be configured using the
-`--horizontal-pod-autoscaler-downscale-stabilization` flag or the HPA object
-behavior `behavior.scaleDown.stabilizationWindowSeconds` (see [Support for
-configurable scaling behavior](#support-for-configurable-scaling-behavior)),
-which defaults to 5 minutes.  This means that scaledowns will occur gradually,
-smoothing out the impact of rapidly fluctuating metric values.
+Finally, just before HPA scales the target, the scale recommendation is recorded.  The
+controller considers all recommendations within a configurable window choosing the
+highest recommendation from within that window. This value can be configured using the `--horizontal-pod-autoscaler-downscale-stabilization` flag, which defaults to 5 minutes.
+This means that scaledowns will occur gradually, smoothing out the impact of rapidly
+fluctuating metric values.
 
 ## API Object
 
@@ -183,8 +178,11 @@ The beta version, which includes support for scaling on memory and custom metric
 can be found in `autoscaling/v2beta2`. The new fields introduced in `autoscaling/v2beta2`
 are preserved as annotations when working with `autoscaling/v1`.
 
+When you create a HorizontalPodAutoscaler API object, make sure the name specified is a valid
+[DNS subdomain name](/docs/concepts/overview/working-with-objects/names#dns-subdomain-names).
 More details about the API object can be found at
-[HorizontalPodAutoscaler Object](https://git.k8s.io/community/contributors/design-proposals/autoscaling/horizontal-pod-autoscaler.md#horizontalpodautoscaler-object).
+[HorizontalPodAutoscaler Object](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#horizontalpodautoscaler-v1-autoscaling).
+
 
 ## Support for Horizontal Pod Autoscaler in kubectl
 
@@ -202,13 +200,12 @@ The detailed documentation of `kubectl autoscale` can be found [here](/docs/refe
 
 ## Autoscaling during rolling update
 
-Currently in Kubernetes, it is possible to perform a [rolling update](/docs/tasks/run-application/rolling-update-replication-controller/) by managing replication controllers directly,
-or by using the deployment object, which manages the underlying replica sets for you.
+Currently in Kubernetes, it is possible to perform a rolling update by using the deployment object, which manages the underlying replica sets for you.
 Horizontal Pod Autoscaler only supports the latter approach: the Horizontal Pod Autoscaler is bound to the deployment object,
 it sets the size for the deployment object, and the deployment is responsible for setting sizes of underlying replica sets.
 
 Horizontal Pod Autoscaler does not work with rolling update using direct manipulation of replication controllers,
-i.e. you cannot bind a Horizontal Pod Autoscaler to a replication controller and do rolling update (e.g. using `kubectl rolling-update`).
+i.e. you cannot bind a Horizontal Pod Autoscaler to a replication controller and do rolling update.
 The reason this doesn't work is that when rolling update creates a new replication controller,
 the Horizontal Pod Autoscaler will not be bound to the new replication controller.
 
@@ -218,7 +215,10 @@ When managing the scale of a group of replicas using the Horizontal Pod Autoscal
 it is possible that the number of replicas keeps fluctuating frequently due to the
 dynamic nature of the metrics evaluated. This is sometimes referred to as *thrashing*.
 
-Starting from v1.12, a new algorithmic update removes the need for an
+Starting from v1.6, a cluster operator can mitigate this problem by tuning
+the global HPA settings exposed as flags for the `kube-controller-manager` component:
+
+Starting from v1.12, a new algorithmic update removes the need for the
 upscale delay.
 
 - `--horizontal-pod-autoscaler-downscale-stabilization`: The value for this option is a
@@ -233,11 +233,6 @@ that the Horizontal Pod Autoscaler is not responsive to workload changes. Howeve
 the delay value is set too short, the scale of the replicas set may keep thrashing as
 usual.
 {{< /note >}}
-
-Starting from v1.17 the downscale stabilization window can be set on a per-HPA
-basis by setting the `behavior.scaleDown.stabilizationWindowSeconds` field in
-the v2beta2 API. See [Support for configurable scaling
-behavior](#support-for-configurable-scaling-behavior).
 
 ## Support for multiple metrics
 
@@ -266,7 +261,7 @@ See [Support for metrics APIs](#support-for-metrics-apis) for the requirements.
 By default, the HorizontalPodAutoscaler controller retrieves metrics from a series of APIs.  In order for it to access these
 APIs, cluster administrators must ensure that:
 
-* The [API aggregation layer](/docs/tasks/access-kubernetes-api/configure-aggregation-layer/) is enabled.
+* The [API aggregation layer](/docs/tasks/extend-kubernetes/configure-aggregation-layer/) is enabled.
 
 * The corresponding APIs are registered:
 
@@ -292,12 +287,12 @@ and [the walkthrough for using external metrics](/docs/tasks/run-application/hor
 ## Support for configurable scaling behavior
 
 Starting from
-[v1.17](https://github.com/kubernetes/enhancements/blob/master/keps/sig-autoscaling/20190307-configurable-scale-velocity-for-hpa.md)
+[v1.18](https://github.com/kubernetes/enhancements/blob/master/keps/sig-autoscaling/20190307-configurable-scale-velocity-for-hpa.md)
 the `v2beta2` API allows scaling behavior to be configured through the HPA
 `behavior` field. Behaviors are specified separately for scaling up and down in
 `scaleUp` or `scaleDown` section under the `behavior` field. A stabilization
 window can be specified for both directions which prevents the flapping of the
-number of the replicas in the scaling target. Similarly specifing scaling
+number of the replicas in the scaling target. Similarly specifying scaling
 policies controls the rate of change of replicas while scaling.
 
 ### Scaling Policies
@@ -338,7 +333,7 @@ scaling in that direction.
 
 ### Stabilization Window
 
-The stabilization window is used to retrict the flapping of replicas when the metrics
+The stabilization window is used to restrict the flapping of replicas when the metrics
 used for scaling keep fluctuating. The stabilization window is used by the autoscaling
 algorithm to consider the computed desired state from the past to prevent scaling. In
 the following example the stabilization window is specified for `scaleDown`.
@@ -382,7 +377,7 @@ For scaling down the stabilization window is _300_ seconds(or the value of the
 for scaling down which allows a 100% of the currently running replicas to be removed which
 means the scaling target can be scaled down to the minimum allowed replicas.
 For scaling up there is no stabilization window. When the metrics indicate that the target should be
-scaled up the target is scaled up immediately. There are 2 policies which. 4 pods or a 100% of the currently
+scaled up the target is scaled up immediately. There are 2 policies where 4 pods or a 100% of the currently
 running replicas will be added every 15 seconds till the HPA reaches its steady state.
 
 ### Example: change downscale stabilization window
@@ -437,12 +432,13 @@ behavior:
     selectPolicy: Disabled
 ```
 
-{{% /capture %}}
 
-{{% capture whatsnext %}}
+
+## {{% heading "whatsnext" %}}
+
 
 * Design documentation: [Horizontal Pod Autoscaling](https://git.k8s.io/community/contributors/design-proposals/autoscaling/horizontal-pod-autoscaler.md).
 * kubectl autoscale command: [kubectl autoscale](/docs/reference/generated/kubectl/kubectl-commands/#autoscale).
 * Usage example of [Horizontal Pod Autoscaler](/docs/tasks/run-application/horizontal-pod-autoscale-walkthrough/).
 
-{{% /capture %}}
+

@@ -4,10 +4,10 @@ reviewers:
 title: Choisir la bonne solution
 description: Panorama de solutions Kubernetes
 weight: 10
-content_template: templates/concept
+content_type: concept
 ---
 
-{{% capture overview %}}
+<!-- overview -->
 
 Kubernetes peut fonctionner sur des plateformes variées: sur votre PC portable, sur des VMs d'un fournisseur de cloud, ou un rack
 de serveurs bare-metal. L'effort demandé pour configurer un cluster varie de l'éxécution d'une simple commande à la création
@@ -15,22 +15,22 @@ de votre propre cluster personnalisé. Utilisez ce guide pour choisir la solutio
 
 Si vous voulez simplement jeter un coup d'oeil rapide, utilisez alors de préférence les [solutions locales basées sur Docker](#solutions-locales).
 
-Lorsque vous êtes prêts à augmenter le nombre de machines et souhaitez bénéficier de la haute disponibilité, une 
+Lorsque vous êtes prêts à augmenter le nombre de machines et souhaitez bénéficier de la haute disponibilité, une
 [solution hébergée](#solutions-hebergées) est la plus simple à déployer et à maintenir.
 
-[Les solutions cloud clés en main](#solutions-clés-en-main) ne demandent que peu de commande pour déployer et couvrent un large panel de 
+[Les solutions cloud clés en main](#solutions-clés-en-main) ne demandent que peu de commande pour déployer et couvrent un large panel de
  fournisseurs de cloud. [Les solutions clés en main pour cloud privé](#solutions-on-premises-clés-en-main) possèdent la simplicité des solutions cloud clés en main combinées avec la sécurité de votre propre réseau privé.
 
-Si vous avez déjà un moyen de configurer vos resources, utilisez [kubeadm](/fr/docs/setup/independent/create-cluster-kubeadm/) pour facilement
+Si vous avez déjà un moyen de configurer vos resources, utilisez [kubeadm](/fr/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/) pour facilement
 déployer un cluster grâce à une seule ligne de commande par machine.
 
 [Les solutions personnalisées](#solutions-personnalisées) varient d'instructions pas à pas, à des conseils relativement généraux pour déployer un
 
 cluster Kubernetes en partant du début.
 
-{{% /capture %}}
 
-{{% capture body %}}
+
+<!-- body -->
 
 ## Solutions locales
 
@@ -168,7 +168,7 @@ essayez le guide [Getting Started from Scratch](/docs/setup/release/building-fro
 ### Universel
 
 Si vous avez déjà un moyen de configurer les ressources d'hébergement, utilisez
-[kubeadm](/docs/setup/independent/create-cluster-kubeadm/) pour déployer facilement un cluster
+[kubeadm](/fr/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/) pour déployer facilement un cluster
 avec une seule commande par machine.
 
 ### Cloud
@@ -220,7 +220,7 @@ Ci-dessous vous trouverez un tableau récapitulatif de toutes les solutions list
 
 | Fournisseur de IaaS                            | Config. Mgmt.                                                                | OS                                                                       | Réseau                                                                                                           | Docs                                                                                          | Niveau de support                                                                                                                                                                                                                              |
 |------------------------------------------------|------------------------------------------------------------------------------|--------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| tous                                           | tous                                                                         | multi-support                                                            | tout les CNI                                                                                                     | [docs](/docs/setup/independent/create-cluster-kubeadm/)                                       | Project ([SIG-cluster-lifecycle](https://git.k8s.io/community/sig-cluster-lifecycle))                                                                                                                                                          |
+| tous                                           | tous                                                                         | multi-support                                                            | tout les CNI                                                                                                     | [docs](/fr/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/)                                       | Project ([SIG-cluster-lifecycle](https://git.k8s.io/community/sig-cluster-lifecycle))                                                                                                                                                          |
 | Google Kubernetes Engine                       |                                                                              |                                                                          | GCE                                                                                                              | [docs](https://cloud.google.com/kubernetes-engine/docs/)                                      | Commercial                                                                                                                                                                                                                                     |
 | Docker Enterprise                              | personnalisé                                                                 | [multi-support](https://success.docker.com/article/compatibility-matrix) | [multi-support](https://docs.docker.com/ee/ucp/kubernetes/install-cni-plugin/)                                   | [docs](https://docs.docker.com/ee/)                                                           | Commercial                                                                                                                                                                                                                                     |
 | IBM Cloud Private                              | Ansible                                                                      | multi-support                                                            | multi-support                                                                                                    | [docs](https://www.ibm.com/support/knowledgecenter/SSBS6K/product_welcome_cloud_private.html) | [Commercial](https://www.ibm.com/mysupport/s/topic/0TO500000001o0fGAA/ibm-cloud-private?language=en_US&productId=01t50000004X1PWAA0) and [Community](https://www.ibm.com/support/knowledgecenter/SSBS6K_3.1.2/troubleshoot/support_types.html) |
@@ -300,4 +300,4 @@ Le tableau ci-dessus est ordonné par versions testées et utilisées dans les n
 <!-- Google Kubernetes Engine conformance test result -->
 [3]: https://gist.github.com/erictune/2f39b22f72565365e59b
 
-{{% /capture %}}
+

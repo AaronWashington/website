@@ -1,18 +1,16 @@
 ---
 title: Access Clusters Using the Kubernetes API
-content_template: templates/task
+content_type: task
 ---
 
-{{% capture overview %}}
+<!-- overview -->
 This page shows how to access clusters using the Kubernetes API.
-{{% /capture %}}
 
-{{% capture prerequisites %}}
+## {{% heading "prerequisites" %}}
 
 {{< include "task-tutorial-prereqs.md" >}} {{< version-check >}}
-{{% /capture %}}
 
-{{% capture steps %}}
+<!-- steps -->
 
 ## Accessing the Kubernetes API
 
@@ -169,11 +167,14 @@ client-go defines its own API objects, so if needed, import API definitions from
 
 {{< /note >}}
 
-The Go client can use the same [kubeconfig file](/docs/concepts/cluster-administration/authenticate-across-clusters-kubeconfig/)
+The Go client can use the same [kubeconfig file](/docs/concepts/configuration/organize-cluster-access-kubeconfig/)
 as the kubectl CLI does to locate and authenticate to the API server. See this [example](https://git.k8s.io/client-go/examples/out-of-cluster-client-configuration/main.go):
 
 ```golang
+package main
+
 import (
+  "context"
   "fmt"
   "k8s.io/apimachinery/pkg/apis/meta/v1"
   "k8s.io/client-go/kubernetes"
@@ -187,7 +188,7 @@ func main() {
   // creates the clientset
   clientset, _ := kubernetes.NewForConfig(config)
   // access the API to list pods
-  pods, _ := clientset.CoreV1().Pods("").List(v1.ListOptions{})
+  pods, _ := clientset.CoreV1().Pods("").List(context.TODO(), v1.ListOptions{})
   fmt.Printf("There are %d pods in the cluster\n", len(pods.Items))
 }
 ```
@@ -198,7 +199,7 @@ If the application is deployed as a Pod in the cluster, see [Accessing the API f
 
 To use [Python client](https://github.com/kubernetes-client/python), run the following command: `pip install kubernetes` See [Python Client Library page](https://github.com/kubernetes-client/python) for more installation options.
 
-The Python client can use the same [kubeconfig file](/docs/concepts/cluster-administration/authenticate-across-clusters-kubeconfig/)
+The Python client can use the same [kubeconfig file](/docs/concepts/configuration/organize-cluster-access-kubeconfig/)
 as the kubectl CLI does to locate and authenticate to the API server. See this [example](https://github.com/kubernetes-client/python/blob/master/examples/out_of_cluster_config.py):
 
 ```python
@@ -228,7 +229,7 @@ mvn install
 
 See [https://github.com/kubernetes-client/java/releases](https://github.com/kubernetes-client/java/releases) to see which versions are supported.
 
-The Java client can use the same [kubeconfig file](/docs/concepts/cluster-administration/authenticate-across-clusters-kubeconfig/)
+The Java client can use the same [kubeconfig file](/docs/concepts/configuration/organize-cluster-access-kubeconfig/)
 as the kubectl CLI does to locate and authenticate to the API server. See this [example](https://github.com/kubernetes-client/java/blob/master/examples/src/main/java/io/kubernetes/client/examples/KubeConfigFileClientExample.java):
 
 ```java
@@ -269,8 +270,8 @@ public class KubeConfigFileClientExample {
     CoreV1Api api = new CoreV1Api();
 
     // invokes the CoreV1Api client
-    V1PodList list = api.listPodForAllNamespaces(null, null, null, null, null, null, null, null);
-    System.out.Println("Listing all pods: ");
+    V1PodList list = api.listPodForAllNamespaces(null, null, null, null, null, null, null, null, null);
+    System.out.println("Listing all pods: ");
     for (V1Pod item : list.getItems()) {
       System.out.println(item.getMetadata().getName());
     }
@@ -282,7 +283,7 @@ public class KubeConfigFileClientExample {
 
 To use [dotnet client](https://github.com/kubernetes-client/csharp), run the following command: `dotnet add package KubernetesClient --version 1.6.1` See [dotnet Client Library page](https://github.com/kubernetes-client/csharp) for more installation options. See [https://github.com/kubernetes-client/csharp/releases](https://github.com/kubernetes-client/csharp/releases) to see which versions are supported.
 
-The dotnet client can use the same [kubeconfig file](/docs/concepts/cluster-administration/authenticate-across-clusters-kubeconfig/)
+The dotnet client can use the same [kubeconfig file](/docs/concepts/configuration/organize-cluster-access-kubeconfig/)
 as the kubectl CLI does to locate and authenticate to the API server. See this [example](https://github.com/kubernetes-client/csharp/blob/master/examples/simple/PodList.cs):
 
 ```csharp
@@ -317,7 +318,7 @@ namespace simple
 
 To install [JavaScript client](https://github.com/kubernetes-client/javascript), run the following command: `npm install @kubernetes/client-node`. See [https://github.com/kubernetes-client/javascript/releases](https://github.com/kubernetes-client/javascript/releases) to see which versions are supported.
 
-The JavaScript client can use the same [kubeconfig file](/docs/concepts/cluster-administration/authenticate-across-clusters-kubeconfig/)
+The JavaScript client can use the same [kubeconfig file](/docs/concepts/configuration/organize-cluster-access-kubeconfig/)
 as the kubectl CLI does to locate and authenticate to the API server. See this [example](https://github.com/kubernetes-client/javascript/blob/master/examples/example.js):
 
 ```javascript
@@ -337,7 +338,7 @@ k8sApi.listNamespacedPod('default').then((res) => {
 
 See [https://github.com/kubernetes-client/haskell/releases](https://github.com/kubernetes-client/haskell/releases) to see which versions are supported.
 
-The [Haskell client](https://github.com/kubernetes-client/haskell) can use the same [kubeconfig file](/docs/concepts/cluster-administration/authenticate-across-clusters-kubeconfig/)
+The [Haskell client](https://github.com/kubernetes-client/haskell) can use the same [kubeconfig file](/docs/concepts/configuration/organize-cluster-access-kubeconfig/)
 as the kubectl CLI does to locate and authenticate to the API server. See this [example](https://github.com/kubernetes-client/haskell/blob/master/kubernetes-client/example/App.hs):
 
 ```haskell
@@ -387,7 +388,7 @@ While running in a Pod, the Kubernetes apiserver is accessible via a Service nam
 do this automatically.
 
 The recommended way to authenticate to the API server is with a
-[service account](/docs/user-guide/service-accounts) credential. By default, a Pod
+[service account](/docs/tasks/configure-pod-container/configure-service-account/) credential. By default, a Pod
 is associated with a service account, and a credential (token) for that
 service account is placed into the filesystem tree of each container in that Pod,
 at `/var/run/secrets/kubernetes.io/serviceaccount/token`.
@@ -449,5 +450,5 @@ The output will be similar to this:
 }
 ```
 
-{{% /capture %}}
+
 

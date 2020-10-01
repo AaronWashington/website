@@ -5,7 +5,7 @@ approvers:
 - deads2k
 - liggitt
 title: 使用 ABAC 鉴权
-content_template: templates/concept
+content_type: concept
 ---
 
 <!--
@@ -16,21 +16,21 @@ reviewers:
 - deads2k
 - liggitt
 title: Using ABAC Authorization
-content_template: templates/concept
+content_type: concept
 weight: 80
 ---
 -->
 
-{{% capture overview %}}
+<!-- overview -->
 
 <!--
 Attribute-based access control (ABAC) defines an access control paradigm whereby access rights are granted to users through the use of policies which combine attributes together.
 -->
 基于属性的访问控制（Attribute-based access control - ABAC）定义了访问控制范例，其中通过使用将属性组合在一起的策略来向用户授予访问权限。
 
-{{% /capture %}}
 
-{{% capture body %}}
+
+<!-- body -->
 
 <!--
 ## Policy File Format
@@ -63,7 +63,7 @@ properties:
     - Non-resource-matching properties:
       - `nonResourcePath`, type string; non-resource request paths.
         - Ex: `/version` or `/apis`
-        - Wildcard: 
+        - Wildcard:
           - `*` matches all non-resource requests.
           - `/foo/*` matches all subpaths of `/foo/`.
     - `readonly`, type boolean, when true, means that the Resource-matching policy only applies to get, list, and watch operations, Non-resource-matching policy only applies to get operation.
@@ -73,7 +73,7 @@ properties:
 
 基于 `ABAC` 模式，可以这样指定策略文件 `--authorization-policy-file=SOME_FILENAME`。
 
-此文件格式是 [JSON Lines](http://jsonlines.org/)，不应存在封闭的列表或映射，每行一个映射。
+此文件格式是 [JSON Lines](https://jsonlines.org/)，不应存在封闭的列表或映射，每行一个映射。
 
 每一行都是一个策略对象，策略对象是具有以下属性的映射：
 
@@ -213,7 +213,7 @@ Kubectl 使用 api-server 的 `/api` 和 `/apis` 端点来发现服务资源类�
     {"apiVersion": "abac.authorization.kubernetes.io/v1beta1", "kind": "Policy", "spec": {"user": "kubelet", "namespace": "*", "resource": "events"}}
     ```
  -->
- 
+
 ## 例子 {#examples}
 
 1. Alice 可以对所有资源做任何事情：
@@ -270,7 +270,7 @@ system:serviceaccount:<namespace>:<serviceaccountname>
 
 -->
 
-[完整文件示例](http://releases.k8s.io/{{< param "githubbranch" >}}/pkg/auth/authorizer/abac/example_policy_file.jsonl)
+[完整文件示例](https://releases.k8s.io/{{< param "githubbranch" >}}/pkg/auth/authorizer/abac/example_policy_file.jsonl)
 
 ## 服务帐户的快速说明
 
@@ -287,7 +287,7 @@ Creating a new namespace leads to the creation of a new service account in the f
 system:serviceaccount:<namespace>:default
 ```
 
-For example, if you wanted to grant the default service account (in the `kube-system` namespace) full 
+For example, if you wanted to grant the default service account (in the `kube-system` namespace) full
 privilege to the API using ABAC, you would add this line to your policy file:
 
 ```json
@@ -310,6 +310,3 @@ system:serviceaccount:<namespace>:default
 ```
 
 需要重新启动 apiserver 以获取新的策略行。
-
-{{% /capture %}}
-

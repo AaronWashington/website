@@ -1,10 +1,10 @@
 ---
 title: Installing Kubernetes with kops
-content_template: templates/task
+content_type: task
 weight: 20
 ---
 
-{{% capture overview %}}
+<!-- overview -->
 
 This quickstart shows you how to easily install a Kubernetes cluster on AWS.
 It uses a tool called [`kops`](https://github.com/kubernetes/kops).
@@ -18,19 +18,20 @@ kops is an automated provisioning system:
 * High-Availability support - see the [high_availability.md](https://github.com/kubernetes/kops/blob/master/docs/operations/high_availability.md)
 * Can directly provision, or generate terraform manifests - see the [terraform.md](https://github.com/kubernetes/kops/blob/master/docs/terraform.md)
 
-{{% /capture %}}
 
-{{% capture prerequisites %}}
+
+## {{% heading "prerequisites" %}}
+
 
 * You must have [kubectl](/docs/tasks/tools/install-kubectl/) installed.
 
 * You must [install](https://github.com/kubernetes/kops#installing) `kops` on a 64-bit (AMD64 and Intel 64) device architecture.
 
-* You must have an [AWS account](https://docs.aws.amazon.com/polly/latest/dg/setting-up.html), generate [IAM keys](https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys) and [configure](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html#cli-quick-configuration) them.
+* You must have an [AWS account](https://docs.aws.amazon.com/polly/latest/dg/setting-up.html), generate [IAM keys](https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys) and [configure](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html#cli-quick-configuration) them. The IAM user will need [adequate permissions](https://github.com/kubernetes/kops/blob/master/docs/getting_started/aws.md#setup-iam-user).
 
-{{% /capture %}}
 
-{{% capture steps %}}
+
+<!-- steps -->
 
 ## Creating a cluster
 
@@ -49,13 +50,11 @@ Download the latest release with the command:
 curl -LO https://github.com/kubernetes/kops/releases/download/$(curl -s https://api.github.com/repos/kubernetes/kops/releases/latest | grep tag_name | cut -d '"' -f 4)/kops-darwin-amd64
 ```
 
-To download a specific version, replace the
+To download a specific version, replace the following portion of the command with the specific kops version.
 
 ```shell
 $(curl -s https://api.github.com/repos/kubernetes/kops/releases/latest | grep tag_name | cut -d '"' -f 4)
 ```
-
-portion of the command with the specific version.
 
 For example, to download kops version v1.15.0 type:
 
@@ -141,7 +140,7 @@ you choose for organization reasons (e.g. you are allowed to create records unde
 but not under `example.com`).
 
 Let's assume you're using `dev.example.com` as your hosted zone.  You create that hosted zone using
-the [normal process](http://docs.aws.amazon.com/Route53/latest/DeveloperGuide/CreatingNewSubdomain.html), or
+the [normal process](https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/CreatingNewSubdomain.html), or
 with a command such as `aws route53 create-hosted-zone --name dev.example.com --caller-reference 1`.
 
 You must then set up your NS records in the parent domain, so that records in the domain will resolve.  Here,
@@ -227,13 +226,13 @@ See the [list of add-ons](/docs/concepts/cluster-administration/addons/) to expl
 
 * To delete your cluster: `kops delete cluster useast1.dev.example.com --yes`
 
-{{% /capture %}}
 
-{{% capture whatsnext %}}
 
-* Learn more about Kubernetes [concepts](/docs/concepts/) and [`kubectl`](/docs/user-guide/kubectl-overview/).
+## {{% heading "whatsnext" %}}
+
+
+* Learn more about Kubernetes [concepts](/docs/concepts/) and [`kubectl`](/docs/reference/kubectl/overview/).
 * Learn more about `kops` [advanced usage](https://kops.sigs.k8s.io/) for tutorials, best practices and advanced configuration options.
 * Follow `kops` community discussions on Slack: [community discussions](https://github.com/kubernetes/kops#other-ways-to-communicate-with-the-contributors)
 * Contribute to `kops` by addressing or raising an issue [GitHub Issues](https://github.com/kubernetes/kops/issues)
 
-{{% /capture %}}

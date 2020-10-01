@@ -15,7 +15,7 @@ Weitere Informationen zum Beitrag zur Kubernetes-Dokumentation finden Sie unter:
 
 * [Mitwirkung beginnen](https://kubernetes.io/docs/contribute/start/)
 * [Ihre Dokumentationsänderungen bereitstellen](http://kubernetes.io/docs/contribute/intermediate#view-your-changes-locally)
-* [Seitenvorlagen verwenden](http://kubernetes.io/docs/contribute/style/page-templates/)
+* [Seitenvorlagen verwenden](http://kubernetes.io/docs/contribute/style/page-content-types/)
 * [Dokumentationsstil-Handbuch](http://kubernetes.io/docs/contribute/style/style-guide/)
 * [Übersetzung der Kubernetes-Dokumentation](https://kubernetes.io/docs/contribute/localization/)
 
@@ -40,13 +40,13 @@ Um die Kubernetes-Website lokal laufen zu lassen, empfiehlt es sich, ein speziel
 Wenn Sie Docker [installiert](https://www.docker.com/get-started) haben, erstellen Sie das Docker-Image `kubernetes-hugo` lokal:
 
 ```bash
-make docker-image
+make container-image
 ```
 
 Nachdem das Image erstellt wurde, können Sie die Site lokal ausführen:
 
 ```bash
-make docker-serve
+make container-serve
 ```
 
 Öffnen Sie Ihren Browser unter http://localhost:1313, um die Site anzuzeigen. Wenn Sie Änderungen an den Quelldateien vornehmen, aktualisiert Hugo die Site und erzwingt eine Browseraktualisierung.

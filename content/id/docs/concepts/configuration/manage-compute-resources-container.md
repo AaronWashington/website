@@ -1,6 +1,6 @@
 ---
 title: Mengatur Sumber Daya Komputasi untuk Container
-content_template: templates/concept
+content_type: concept
 weight: 20
 feature:
   title: Bin Packing Otomatis
@@ -8,9 +8,9 @@ feature:
     Menaruh kontainer-kontainer secara otomatis berdasarkan kebutuhan sumber daya mereka dan batasan-batasan lainnya, tanpa mengorbankan ketersediaan. Membaurkan beban-beban kerja kritis dan _best-effort_ untuk meningkatkan penggunaan sumber daya dan menghemat lebih banyak sumber daya.
 ---
 
-{{% capture overview %}}
+<!-- overview -->
 
-Saat kamu membuat spesifikasi sebuah [Pod](/docs/concepts/workloads/pods/pod/), kamu
+Saat kamu membuat spesifikasi sebuah [Pod](/id/docs/concepts/workloads/pods/pod/), kamu
 dapat secara opsional menentukan seberapa banyak CPU dan memori (RAM) yang dibutuhkan
 oleh setiap Container. Saat Container-Container menentukan _request_ (permintaan) sumber daya,
 scheduler dapat membuat keputusan yang lebih baik mengenai Node mana yang akan dipilih
@@ -18,9 +18,9 @@ untuk menaruh Pod-Pod. Dan saat limit (batas) sumber daya Container-Container te
 maka kemungkinan rebutan sumber daya pada sebuah Node dapat dihindari.
 Untuk informasi lebih lanjut mengenai perbedaan `request` dan `limit`, lihat [QoS Sumber Daya](https://git.k8s.io/community/contributors/design-proposals/node/resource-qos.md).
 
-{{% /capture %}}
 
-{{% capture body %}}
+
+<!-- body -->
 
 ## Jenis-jenis sumber daya
 
@@ -42,8 +42,8 @@ Hal ini berbeda dari sumber daya `memory` dan `cpu` (yang dapat di-_overcommit_)
 
 CPU dan memori secara kolektif disebut sebagai _sumber daya komputasi_, atau cukup
 _sumber daya_ saja. Sumber daya komputasi adalah jumlah yang dapat diminta, dialokasikan,
-dan dikonsumsi. Mereka berbeda dengan [sumber daya API](/docs/concepts/overview/kubernetes-api/).
-Sumber daya API, seperti Pod dan [Service](/docs/concepts/services-networking/service/) adalah
+dan dikonsumsi. Mereka berbeda dengan [sumber daya API](/id/docs/concepts/overview/kubernetes-api/).
+Sumber daya API, seperti Pod dan [Service](/id/docs/concepts/services-networking/service/) adalah
 objek-objek yang dapat dibaca dan diubah melalui Kubernetes API Server.
 
 ## Request dan Limit Sumber daya dari Pod dan Container
@@ -270,7 +270,7 @@ _daemon_ sistem menggunakan sebagian dari sumber daya yang ada. Kolom `allocatab
 memberikan jumlah sumber daya yang tersedia untuk Pod-Pod. Untuk lebih lanjut, lihat
 [Sumber daya Node yang dapat dialokasikan](https://git.k8s.io/community/contributors/design-proposals/node/node-allocatable.md).
 
-Fitur [kuota sumber daya](/docs/concepts/policy/resource-quotas/) dapat disetel untuk
+Fitur [kuota sumber daya](/id/docs/concepts/policy/resource-quotas/) dapat disetel untuk
 membatasi jumlah sumber daya yang dapat digunakan. Jika dipakai bersama dengan Namespace,
 kuota sumber daya dapat mencegah suatu tim menghabiskan semua sumber daya.
 
@@ -489,7 +489,7 @@ Sumber daya yang diperluas pada tingkat Node terikat pada Node.
 ##### Sumber daya Device Plugin yang dikelola
 
 Lihat [Device
-Plugin](/docs/concepts/extend-kubernetes/compute-storage-net/device-plugins/) untuk
+Plugin](/id/docs/concepts/extend-kubernetes/compute-storage-net/device-plugins/) untuk
 cara menyatakan sumber daya _device plugin_ yang dikelola pada setiap node.
 
 ##### Sumber daya lainnya
@@ -615,10 +615,11 @@ spec:
 
 
 
-{{% /capture %}}
 
 
-{{% capture whatsnext %}}
+
+## {{% heading "whatsnext" %}}
+
 
 * Dapatkan pengalaman langsung [menentukan sumber daya memori untuk Container dan Pod](/docs/tasks/configure-pod-container/assign-memory-resource/).
 
@@ -628,4 +629,4 @@ spec:
 
 * [ResourceRequirements](/docs/reference/generated/kubernetes-api/{{< param "version" >}}/#resourcerequirements-v1-core)
 
-{{% /capture %}}
+
